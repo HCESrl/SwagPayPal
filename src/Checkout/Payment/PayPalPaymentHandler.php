@@ -84,6 +84,17 @@ class PayPalPaymentHandler implements AsynchronousPaymentHandlerInterface
             );
         }
 
+        // Vintageria
+        if ($transaction->getOrder()->getAmountTotal() == 0) {
+            $this->orderTransactionStateHandler->paid($transactionId, $salesChannelContext->getContext());
+            $url = '/order?orderId=';
+            if ($salesChannelContext->getContext()->getLanguageId() !== \Shopware\Core\Defaults::LANGUAGE_SYSTEM) {
+                $url = '/it-IT' . $url;
+            }
+            return new RedirectResponse($url . $transaction->getOrder()->getId());
+        }
+        //
+
         $this->orderTransactionStateHandler->process($transactionId, $salesChannelContext->getContext());
         if ($dataBag->get(self::PAYPAL_EXPRESS_CHECKOUT_ID)) {
             try {
