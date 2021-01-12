@@ -79,7 +79,8 @@ class PayerInfo extends ExecutePayerInfo
 
     public function getBillingAddress(): ?BillingAddress
     {
-        return $this->billingAddress;
+        // Vintageria
+        return null; // return $this->billingAddress;
     }
 
     public function setBillingAddress(?BillingAddress $billingAddress): void
@@ -87,9 +88,10 @@ class PayerInfo extends ExecutePayerInfo
         $this->billingAddress = $billingAddress;
     }
 
-    public function getShippingAddress(): ShippingAddress
+    public function getShippingAddress(): ?ShippingAddress
     {
-        return $this->shippingAddress;
+        // Vintageria
+        return null; // $this->shippingAddress;
     }
 
     public function setShippingAddress(ShippingAddress $shippingAddress): void
